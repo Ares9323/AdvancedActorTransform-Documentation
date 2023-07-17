@@ -2,13 +2,18 @@
 - Download AdvancedActorTransform from the [Unreal Marketplace](https://unrealengine.com/marketplace/en-US/product/26fa6336e06b41d2baad1f9308d9019b) and add it to your project
 - Feel free to delete the ExampleContent folder in case you don't need it, but it's really recommended to have a look at the example levels to understand how the plugin works.
 - [**Recommended for cinematic**] Add AdvancedActorTransformComponent to any actor you want to use as controller, you can drag it from `/AdvancedActorTransform/Blueprints/Components/AdvancedActorTransformComponent` to your actor, or you can add it from the Add Component button in the Details panel:
-![AddComponentFromDetails](https://github.com/Ares9323/AdvancedActorTransform/blob/master/Images/AddComponentFromDetails.png)
+
+    ![AddComponentFromDetails](https://github.com/Ares9323/AdvancedActorTransform/blob/master/Images/AddComponentFromDetails.png)
+
 - [**Recommended to use in game**] Add AdvancedActorTransformComponent to your character from the Add Component button in the Blueprint Editor:
-![AddComponentFromBlueprint](https://github.com/Ares9323/AdvancedActorTransform/blob/master/Images/AddComponentFromBlueprint.png)
+
+    ![AddComponentFromBlueprint](https://github.com/Ares9323/AdvancedActorTransform/blob/master/Images/AddComponentFromBlueprint.png)
+
 - Read the documentation below to understand how the plugin works and how to get the most out of it.
 - All the material instances in the example level inherit from the `M_MatrixTransformMaster` material, it's not mandatory to use this material but it clearly explains how to connect the `MF_AAT_Control` function into your materials:
 
-![M_MatrixTransformMaster](https://github.com/Ares9323/AdvancedActorTransform/blob/master/Images/M_MatrixTransformMaster.png)
+    ![M_MatrixTransformMaster](https://github.com/Ares9323/AdvancedActorTransform/blob/master/Images/M_MatrixTransformMaster.png)
+
 - Change the default values of the AAT Component according to your needs.
 
 # How the plugin works:
