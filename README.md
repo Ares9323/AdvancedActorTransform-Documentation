@@ -1,94 +1,21 @@
 # **Advanced Actor Transform - How to setup:**
+Welcome to the updated version of AdvancedActorTransform, if you are looking for the documentation for the older version, it's still mantained in this repository but the first version is deprecated and will no longer be updated or distributed.
+
 - Download AdvancedActorTransform from the [Unreal Marketplace](https://unrealengine.com/marketplace/en-US/product/26fa6336e06b41d2baad1f9308d9019b) and add it to your project
 - Feel free to delete the ExampleContent folder in case you don't need it
-- [**Recommended for cinematic**] Add AdvancedActorTransformComponent to any actor you want to use as controller, you can drag it from `/AdvancedActorTransform/Blueprints/Components/AdvancedActorTransformComponent` to your actor, or you can add it from the Add Component button in the Details panel:
-![AddComponentFromDetails](https://github.com/Ares9323/AdvancedActorTransform/blob/master/Images/AddComponentFromDetails.png)
-- [**Recommended to use in game**] Add AdvancedActorTransformComponent to your character from the Add Component button in the Blueprint Editor:
-![AddComponentFromBlueprint](https://github.com/Ares9323/AdvancedActorTransform/blob/master/Images/AddComponentFromBlueprint.png)
-- Change the default values of the component according to your needs.
+- Click a column header of the following table to go to the documentation of the version you need:
 
-# The details panel:
-![Details Panel](https://github.com/Ares9323/AdvancedActorTransform/blob/master/Images/AATDetails.png)
-## Preset toggler
-- **Affect only location** toggles the **Affect Rotation** and **Affect Scale** to false globally, they will ignore any tag that is not related to location.
-- **Affect only rotation** toggles the **Affect Location** and **Affect Scale** to false globally, they will ignore any tag that is not related to rotation.
-- **Affect only scale** toggles the **Affect Location** and **Affect Rotation** to false globally, they will ignore any tag that is not related to scale.
-- **Restore Defaults** restores the default values of the component (Affect Location, Rotation and Scale to true, and all the Offsets and Multipliers to their default values)
-## AAT Parameters
-| Variable | Default | Effect |
-|----------|---------|--------|
-|**Target Tag**|`AAT`|This is the tag that the component will use to find the actors to control, you can change it to any tag you want, but you have to use the same tag in the actors you want to control. If you want to use multiple components to control different actors, you can change this tag to a custom one, but **you have to make sure that no actor has the more than one control tag**, otherwise there will be conflicts.|
-|**Min Influence Distance**|`500`|This is the minimum distance that the actor has to be from the controller to be affected by it. If it's less or equal to this value, the actor will have its default Location, Rotation and Scale.|
-|**Max Influence Distance**|`500`|This is the maximum distance that the actor has to be from the controller to be affected by it. If it's greater or equal to this value, the actor will have its Location, Rotation and Scale set to the offset values.|
-|**Invert Behaviour**|`false`|Invert the effects of the component, if this is true, the actor will have its default Location, Rotation and Scale if it's less or equal to the Min Influence Distance, and it will have its Location, Rotation and Scale set to the offset values if it's greater or equal to the Max Influence Distance.|
-|**Affect Location**|`true`|If this is false, any actor with the Target Tag will ignore any location change from this controller. This will ignore any actor tag that related to location.|
-|**Location Offset**|`1000,1000,1000`|This is the offset that the actor will have if it's at the Max Influence Distance.|
-|**Location Multiplier**|`1,1,1`|This is the location offset multiplier, used to accentuate or reduce the effect of the offset. If you want to disable movement in all axes except one, you can set the other two multipliers to 0. This is a global setting and has priority over the tags.|
-|**Affect Rotation**|`true`|If this is false, any actor with the Target Tag will ignore any rotation change from this controller. This will ignore any actor tag that related to rotation.|
-|**Rotation Angle**|`720`,`720`,`720`|This is the angle that the actor will have if it's at the Max Influence Distance. By default, it's 720 degrees, which means that the actor will have a full rotation twice.|
-|**Rotation Multiplier**|`1,1,1`|This is the rotation angle multiplier, used to accentuate or reduce the effect of the rotation angle. If you want to disable rotation in all axes except one, you can set the other two multipliers to 0. This is a global setting and has priority over the tags.|
-|**Affect Scale**|`true`|If this is false, any actor with the Target Tag will ignore any scale change from this controller. This will ignore any actor tag that related to scale.|
-|**Scale Multiplier**|`0,0,0`|This is the scale multiplier, it will be multiplied by the scale of the actor at the Min Influence Distance. By default, it's 0, which means that the actor will have a scale of 0 at the Max Influence Distance (it will be invisible), if you want to make the actor bigger at the Max Influence Distance, you can set the multiplier to a value greater than 1. This is a global setting and has priority over the tags.|
-|**[Debug] DrawInfluenceSpheres**|`false`|If this is true, the component will draw spheres to show the Min and Max Influence Distance.|
-|**[Debug] InfluenceSpheresThickness**|`5`|This is the thickness of the spheres that are drawn when the DrawInfluenceSpheres is true. You might want to increase this value if you are using a large Min or Max Influence Distance.|
-|**[Debug] InfluenceSpheresSegments**|`12`|This is the number of segments of the spheres that are drawn when the DrawInfluenceSpheres is true. You might want to increase this value if you want to make the spheres look smoother and see a more precise representation of the Min and Max Influence Distance.|
-|**[Debug] MinInfluenceSphereColor**|`0,1,1,1`| This is the color of the smaller sphere that is drawn when the DrawInfluenceSpheres is true. The default color is cyan but it can be changed to avoid confusion when using multiple components.|
-|**[Debug] MaxInfluenceSphereColor**|`1,0,1,1`| This is the color of the bigger sphere that is drawn when the DrawInfluenceSpheres is true. The default color is magenta but it can be changed to avoid confusion when using multiple components.|
 
-# Tags and their effects
-| Tag                       | Effect |
-|---------------------------|--------|
-| AAT                       | Allows the actor to be controlled from the AAT component. (You can change this tag to a custom one if you want to use multiple components to control different actors)   |
-| AAT_IgnoreX               | The actor ignores location changes on the X axis      |
-| AAT_IgnoreY               | The actor ignores location changes on the Y axis      |
-| AAT_IgnoreZ               | The actor ignores location changes on the Z axis      |
-| AAT_MirrorX               | The actor location changes on the X axis are mirrored |
-| AAT_MirrorY               | The actor location changes on the Y axis are mirrored |
-| AAT_MirrorZ               | The actor location changes on the Z axis are mirrored |
-| AAT_IgnoreRoll            | The actor ignores rotation changes on the X axis      |
-| AAT_IgnorePitch           | The actor ignores rotation changes on the Y axis      |
-| AAT_IgnoreYaw             | The actor ignores rotation changes on the Z axis      |
-| AAT_MirrorRoll            | The actor rotation changes on the X axis are mirrored |
-| AAT_MirrorPitch           | The actor rotation changes on the Y axis are mirrored |
-| AAT_MirrorYaw             | The actor rotation changes on the Z axis are mirrored |
-| AAT_IgnoreScaleX          | The actor ignores scale changes on the X axis         |
-| AAT_IgnoreScaleY          | The actor ignores scale changes on the Y axis         |
-| AAT_IgnoreScaleZ          | The actor ignores scale changes on the Z axis         |
-| AAT_MirrorScaleX          | The actor scale changes on the X axis are mirrored    |
-| AAT_MirrorScaleY          | The actor scale changes on the Y axis are mirrored    |
-| AAT_MirrorScaleZ          | The actor scale changes on the Z axis are mirrored    |
-| AAT_IgnoreLocation        | The actor ignores location changes                    |
-| AAT_IgnoreRotation        | The actor ignores rotation changes                    |
-| AAT_IgnoreScale           | The actor ignores scale changes                       |
-| AAT_CollideOnlyInPlace    | The actor will only have collision enabled when it's in its definitive position, this is especially useful if you are using it in game mode, to avoid compenetrations with the player |
-| AAT_Pin                   | The actor will remain in its place once it reaches its destination. This is really useful tu save performance because the pinned actor will not be updated anymore every frame. If you want to re-enable them you have to call the AAT_GetTaggedActors inside the component|
-
-# How to add tags efficiently
-
-You can obviously add tags to the actors manually, but if you have a lot of actors and they already have different tags, the details panel won't help you at all.
-To overcome this issue, I created an Actor Action Utility that allows you to add/remove tags to multiple actors at once.
-In order to use it you just have to:
-- Select the actors you want to add/remove tags to
-- Right click on the actor and select "Scripted Actions" and select one of the AAT entries.
-![Scripted Actions](https://github.com/Ares9323/AdvancedActorTransform/blob/master/Images/ScriptedActions.png)
-
-## AAT_ActivatePreset
-![Activate Preset](https://github.com/Ares9323/AdvancedActorTransform/blob/master/Images/SA_ActivatePreset.png)
--   **Default Presets**
-    - **Lock movement on all axes** - Adds the tags AAT_IgnoreX, AAT_IgnoreY and AAT_IgnoreZ separately, instead of AAT_IgnoreLocation, useful if you want to remove just one value.
-    - **Lock rotation on all axes** - Adds the tags AAT_IgnoreRoll, AAT_IgnorePitch and AAT_IgnoreYaw separately, instead of AAT_IgnoreRotation, useful if you want to remove just one value.
-    - **Lock scale on all axes** - Adds the tags AAT_IgnoreScaleX, AAT_IgnoreScaleY and AAT_IgnoreScaleZ separately, instead of AAT_IgnoreScale, useful if you want to remove just one value.
-    - **Lock movement and allow rotation only on the Z axis** - Useful for columns, pillars, to simulate growth from the bottom
-    - **Rotate object on the Z axis and negate Z location** -Useful to simulate the DNA helix effect, remove AAT_InverseZ to make it appear from the regular direction instead of the flipped one.
-  - You can create your own presets, you just need to add an entry in the `EAdvancedActorTransform_Presets` enum and implement the tags you need inside the `AddPresetTagsToSelectedActors` function, insite `AAU_AdvancedActorTransformUtilities`
-## AAT_AddTag / AAT_RemoveTag
-![Add/Remove Tag](https://github.com/Ares9323/AdvancedActorTransform/blob/master/Images/SA_AddTag.png)
-- Just select the tag you want to add/remove and the actors will be updated accordingly.
-
-## Remove all tags
-![Remove all tags](https://github.com/Ares9323/AdvancedActorTransform/blob/master/Images/SA_RemoveAllTags.png)
-- By default, this will remove all the tags that are related to the AAT component, so it will remove all the tags that start with `AAT_`, if RemoveOnlyAAT_Tags is set to false, it will remove all the tags from the selected actors.
-
-## Replace activation tag
-![Replace activation tag](https://github.com/Ares9323/AdvancedActorTransform/blob/master/Images/SA_ReplaceActivationTag.png)
-- This will replace the activation tag of the selected actors with the one you selected, this is useful if you want to use multiple components to control different actors, you can just change the activation tag and the actors will be controlled by the component that has the same activation tag. It's recommended to use a tag that starts with `AAT_` to be able to use the AAT_RemoveAllTags function.
+|VERSION COMPARISON | [AAT 1.0](https://github.com/Ares9323/AdvancedActorTransform/blob/master/V1.0.md) | [AAT 2.0](https://github.com/Ares9323/AdvancedActorTransform/blob/master/V2.0.md) |
+|-------------------------------------------|-----------------------|-----------------------------------------------|
+|Works at runtime                           | NO                    | YES                                           |
+|Supports Instanced Static Meshes           | NO                    | YES                                           |
+|Supports Particle Systems / Text / Lights  | YES                   | NO, Only static and skeletal meshes           |
+|Supports many instances                    | No, it becomes laggy  | Tested with 250000 instances without issues   |
+|Affects collision                          | Yes                   | No                                            |
+|Instances can be controlled independently  | Yes, with tags        | Yes, with material instances                  |
+|Easy to use                                | Yes, very basic setup | Requires a bit of experience with materials   |
+|Supports distance from component           | Yes                   | Yes                                           |
+|Supports distance from camera              | No                    | Yes                                           |
+|Supports animation with timea              | No                    | Yes                                           |
+|Supports Material Parameter Collections    | No                    | Yes                                           |
