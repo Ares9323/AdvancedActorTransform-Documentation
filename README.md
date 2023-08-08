@@ -6,7 +6,7 @@ Welcome to the updated version of AdvancedActorTransform, if you are looking for
 - Click a column header of the following table to go to the documentation of the version you need:
 
 
-|VERSION COMPARISON | [AAT 1.0](https://github.com/Ares9323/AdvancedActorTransform/blob/master/V1.0.md) | [AAT 2.0](https://github.com/Ares9323/AdvancedActorTransform/blob/master/V2.0.md) |
+|VERSION COMPARISON | [AAT 1.0](https://github.com/Ares9323/AdvancedActorTransform-Documentation/blob/master/V1.0.md) | [AAT 2.0](https://github.com/Ares9323/AdvancedActorTransform-Documentation/blob/master/V2.0.md) |
 |-------------------------------------------|-----------------------|-----------------------------------------------|
 |Works at runtime                           | NO                    | YES                                           |
 |Supports Instanced Static Meshes           | NO                    | YES                                           |
